@@ -10,7 +10,12 @@
   "author": "gosilama",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^6.2.0"
+    "bookshelf": "^0.14.2",
+    "dotenv": "^6.2.0",
+    "express-winston": "^3.1.0",
+    "knex": "^0.16.3",
+    "mysql": "^2.16.0",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "eslint": "^5.14.0"
