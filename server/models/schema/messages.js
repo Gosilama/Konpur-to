@@ -7,6 +7,10 @@ const messages = bookshelf.Model.extend({
     getById: function (id) {
         const condition = { id };
         return this.forge().query({ where: condition }).fetch();
+    },
+    getByMessage: function (message) {
+        const condition = { message };
+        return this.forge().query({ where: condition }).fetch();
     }
 });
 
