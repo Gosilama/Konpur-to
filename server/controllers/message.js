@@ -4,7 +4,7 @@ const messageHandler = require('../handlers/message');
 module.exports = {
     addMessage: async (req, res) => {
         try {
-            const response = messageHandler.addMessage(req);
+            const response = await messageHandler.addMessage(req);
             return responseHandler.sendSuccess(req, res, response, 200);
         } catch (e) {
             return responseHandler.sendError(req, res, e);
@@ -12,7 +12,7 @@ module.exports = {
     },
     deleteMessage: async (req, res) => {
         try {
-            const response = messageHandler.deleteMessage(req);
+            const response = await messageHandler.deleteMessage(req);
             return responseHandler.sendSuccess(req, res, response, 200);
         } catch (e) {
             return responseHandler.sendError(req, res, e);

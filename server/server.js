@@ -29,7 +29,7 @@ app.options('*', cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use('/korturto', routes);
+app.use('/konpurto', routes);
 
 app.use('/', function(req, res) {
     return responseHandler.sendError(req, res, {
