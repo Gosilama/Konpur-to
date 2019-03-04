@@ -7,9 +7,9 @@ module.exports = {
         try {
             const data = req.body;
 
-            const message = data.message;
+            const message = { message: data.message };
 
-            const messageExists = model.messages.getByMessage(message);
+            const messageExists = await model.messages.getByMessage(data.message);
 
             if (messageExists) {
                 return Promise.reject({
@@ -19,7 +19,7 @@ module.exports = {
                 });
             }
 
-            const savedMessage = model.messages.forge(message).save();
+            const savedMessage = await model.messages.forge(message).save();
 
             if (!savedMessage) {
                 return Promise.reject({
@@ -29,7 +29,7 @@ module.exports = {
                 });
             }
 
-            return Promise.resolve({ message });
+            return Promise.resolve( message );
         } catch (e) {
 
             if (e instanceof Object) {
@@ -48,7 +48,7 @@ module.exports = {
         try {
             const id = req.body.id;
 
-            const validMessage = model.messages.getById(id);
+            const validMessage = await model.messages.getById(id);
 
             if (!validMessage) {
                 return Promise.reject({
@@ -58,8 +58,15 @@ module.exports = {
                 });
             }
 
-            validMessage.tags().detach();
-            validMessage.destroy();
+            const response = await model.messages.deleteMessage(id);
+
+            if (!response) {
+                return Promise.reject({
+                    status_code: 400,
+                    message: "deletion failed",
+                    code: "E0009",
+                });
+            }
 
             return Promise.resolve({ message: responseMessages.DELETION_SUCCESS })
         } catch (e) {
