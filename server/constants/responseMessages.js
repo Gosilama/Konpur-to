@@ -6,4 +6,6 @@ module.exports = {
     NOT_IMPLEMENTED: 'Technical issue: There seems to be a code error with the method being implemented. Do you mind trying later?',
     DUPLICATE_MESSAGE: 'Duplicate message entry. Please edit message and try again.',
     DELETION_SUCCESS: 'Successfully deleted.',
+    DELETION_ERROR: 'Message could not be deleted. Please try again later.',
+    MESSAGES_NOT_FOUND: 'No messages were found. Please create a few messages and try again later.',
 };

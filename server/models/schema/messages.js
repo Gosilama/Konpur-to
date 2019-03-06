@@ -1,5 +1,6 @@
 const bookshelf = require('../../bookshelf');
-let knex = require('../../config/database');
+const knex = require('../../config/database');
+const status = require('../../constants/status');
 
 const messages = bookshelf.Model.extend({
     idAttribute: 'id',
@@ -14,7 +15,11 @@ const messages = bookshelf.Model.extend({
         return this.forge().query({ where: condition }).fetch();
     },
     deleteMessage: function (id) {
-        return knex('messages').where('id', id).delete();
+        // return knex('messages').where('id', id).delete();
+        return knex('messages').where('id', id).update({status: status.DELETED});
+    },
+    getAllMessages: function () {
+        return this.forge().query({ whereRaw: `status = "valid"`}).fetchAll();
     }
 });
 
