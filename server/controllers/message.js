@@ -17,5 +17,13 @@ module.exports = {
         } catch (e) {
             return responseHandler.sendError(req, res, e);
         }
+    },
+    getAllMessages: async (req, res) => {
+        try {
+            const response = await messageHandler.getAllMessages();
+            return responseHandler.sendSuccess(req, res, response, 200);
+        } catch (e) {
+            return responseHandler.sendError(req, res, e)
+        }
     }
 };

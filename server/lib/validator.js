@@ -7,7 +7,7 @@ module.exports = {
         }
     },
     deleteMessage: {
-        body: {
+        query: {
             id: Joi.number().integer().required(),
         }
     }
